@@ -2,13 +2,13 @@
     <div>
         <div class="checkout-pagination-wrap mt-4 pt-2 d-flex justify-content-between align-items-center mx-auto">
             <div class="d-flex flex-column align-items-center" v-for="(item, index) in checkoutSteps" :key="index">
-                <router-link
-                    :to="{ name: `CheckoutStep${index + 1}`}"
+                <a
+                    @click="changeStep(index+1)"
                     class="rounded-circle checkout-pagination shadow"
                     :class="stepFunc(index+1)"
                 >
                     {{ index + 1 }}
-                </router-link>
+                </a>
             </div>
 
         </div><!--end col-->
@@ -18,16 +18,18 @@
 </template>
 
 <script>
-    import CheckoutStep1 from './CheckoutStep1'
-    import CheckoutStep2 from './CheckoutStep2'
-  
+    // import CheckoutStep1 from './CheckoutStep1'
+    // import CheckoutStep2 from './CheckoutStep2'
+    import CheckoutStep from './CheckoutStep'
+
 
     export default {
-        components: {CheckoutStep1,CheckoutStep2},
+        components: {CheckoutStep},
+        // components: {CheckoutStep1,CheckoutStep2},
         name: 'Checkout',
         data() {
             return {
-                step: 'CheckoutStep1',
+                step: 1,
                 checkoutSteps: ['step1','step2'],
                 lastStep: 1,
                 paymentData: null,
@@ -38,22 +40,31 @@
          },
         watch: {
             '$route'(to, from) {
-                if (from.path.indexOf("checkout/") == -1 && to.name !='CheckoutStep1') {
-                    console.log('CheckoutStep1')
-                    this.$router.push({ name: 'CheckoutStep1'});
-                }
-                this.step = to.name
+                // if (from.path.indexOf("checkout/") == -1 && to.path !='/checkout/step1') {
+                //     this.$router.push({ path: `/checkout/step${1}`});
+                // }
+                this.step = this.$store.state.thisStep;
+                console.log('store this step', this.step)
             },
         },
         methods: {
             stepFunc(i) {
                 this.lastStep = this.$store.state.lastStep
-                if (this.step == `CheckoutStep${i}`) {
+                console.log('this.step', this.step, i)
+
+                if (this.step == i) {
                     return 'active'
-                } else if (i > this.lastStep) {
+                }
+                else if (i > this.lastStep) {
+                    console.log('this.lastStep', i, this.lastStep)
                     return 'disactive';
                 }
             },
+            changeStep(i) {
+                this.step = i;
+                this.$store.commit('thisStepMut', i);
+                this.$router.push({ path: `/checkout/step${i}`});
+            }
         },
 
     };
