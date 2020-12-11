@@ -11,7 +11,7 @@
                 </a>
             </div>
 
-        </div><!--end col-->
+        </div>
         <router-view
         />
     </div>
@@ -30,7 +30,7 @@
         data() {
             return {
                 step: 1,
-                checkoutSteps: ['step1','step2'],
+                checkoutSteps: ['step1','step2','step3', 'step4'],
                 lastStep: 1,
                 paymentData: null,
                 lineSpeed: null,
@@ -38,6 +38,9 @@
                 total: null,
             }
          },
+        mounted() {
+            this.$store.commit('checkoutStepsMut', this.checkoutSteps);
+        },
         watch: {
             '$route'(to, from) {
                 // if (from.path.indexOf("checkout/") == -1 && to.path !='/checkout/step1') {
@@ -47,16 +50,14 @@
                 console.log('store this step', this.step)
             },
         },
+        
         methods: {
             stepFunc(i) {
                 this.lastStep = this.$store.state.lastStep
-                console.log('this.step', this.step, i)
-
                 if (this.step == i) {
                     return 'active'
                 }
-                else if (i > this.lastStep) {
-                    console.log('this.lastStep', i, this.lastStep)
+                else if (i > this.step) {
                     return 'disactive';
                 }
             },

@@ -6,6 +6,7 @@ export const store = createStore({
     return {
       thisStep: 1,
       lastStep: null,
+      checkoutSteps: [],
     }
   },
   mutations: {
@@ -14,6 +15,9 @@ export const store = createStore({
     },
     thisStepMut(state, param) {
       state.thisStep = param;
+    },
+    checkoutStepsMut(state, param) {
+      state.checkoutSteps = param;
     },
   }
 })

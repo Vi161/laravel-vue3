@@ -24,13 +24,10 @@
                              </button>
                          </div>
                      </div>
-                 </div><!--end col-->
-             </div><!--end row-->
-         </div><!--end container-->
-         <!-- Price End -->
-
-         <!-- Testi Start -->
-     </section><!--end section-->
+                 </div>
+             </div>
+         </div>
+     </section>
 </template>
 
 <script>
@@ -62,9 +59,15 @@ export default {
     },
     methods: {
         toSecondStep(name) {
+            let stepNum = this.$store.state.checkoutSteps.length;
             let thisStep = this.$store.state.thisStep;
-            this.$store.commit('thisStepMut', thisStep + 1);
-            this.$router.push({ path: `/checkout/step${thisStep + 1}`});
+            if (thisStep < stepNum) {
+                this.$store.commit('thisStepMut', thisStep + 1);
+                this.$router.push({ path: `/checkout/step${thisStep + 1}`});
+            } else {
+                console.log('This is the Last Step!!!', stepNum, thisStep)
+            }
+            
         }
     },
 };
