@@ -5,14 +5,10 @@ export const store = createStore({
   state () {
     return {
       thisStep: 1,
-      lastStep: null,
       checkoutSteps: [],
     }
   },
   mutations: {
-    lastStepMut(state, param) {
-      state.lastStep = param;
-    },
     thisStepMut(state, param) {
       state.thisStep = param;
     },

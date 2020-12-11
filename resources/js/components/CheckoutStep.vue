@@ -39,11 +39,12 @@ export default {
     data() {
         return {
             products: [],
-            lastStep: 1,
         }
     },
     created() {
+        this.$router.push({ path: `/checkout/step1`});
         this.getProducts();
+        console.log('st', this.$store.state.thisStep)
     },
     watch: {
         '$route'(to, from) {
@@ -52,7 +53,6 @@ export default {
     },
     methods: {
         getProducts() {
-            this.$store.commit('lastStepMut', this.lastStep);
             this.products = this.$store.state.checkoutSteps[this.$store.state.thisStep - 1].elements
         },
         toSecondStep(name) {

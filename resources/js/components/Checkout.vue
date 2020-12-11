@@ -86,13 +86,11 @@
         watch: {
             '$route'(to, from) {
                 this.step = this.$store.state.thisStep;
-                console.log('store this step', this.step)
             },
         },
         
         methods: {
             stepFunc(i) {
-                this.lastStep = this.$store.state.lastStep
                 if (this.step == i) {
                     return 'active'
                 }
