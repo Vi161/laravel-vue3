@@ -18,19 +18,61 @@
 </template>
 
 <script>
-    // import CheckoutStep1 from './CheckoutStep1'
-    // import CheckoutStep2 from './CheckoutStep2'
     import CheckoutStep from './CheckoutStep'
 
 
     export default {
         components: {CheckoutStep},
-        // components: {CheckoutStep1,CheckoutStep2},
         name: 'Checkout',
         data() {
             return {
                 step: 1,
-                checkoutSteps: ['step1','step2','step3', 'step4'],
+                checkoutSteps: [
+                    {
+                        step: 'step1',
+                        elements: [
+                            {
+                                frontName: 'Name 1',
+                                subtitle: 'iuhiug jK kjhjk '
+                            },
+                            {
+                                frontName: 'Name 2',
+                                subtitle: 'tutuguurg uar ruug'
+                            },
+                        ]
+                    },
+                    {
+                        step: 'step2',
+                        elements: [
+                            {
+                                frontName: 'Name 3',
+                                subtitle: 'lalalal laldsf lasdf'
+                            },
+                            {
+                                frontName: 'Name 4',
+                                subtitle: 'salfkjsl asdflkjlk  lkf'
+                            },
+                            {
+                                frontName: 'Name 5',
+                                subtitle: 'vkjahdkjs o fasd'
+                            },
+                        ]
+                    },
+                    {
+                        step: 'step3',
+                        elements: [
+                            {
+                                frontName: 'Name 6',
+                                subtitle: 'asdf'
+                            },
+                            {
+                                frontName: 'Name 7',
+                                subtitle: ';asfjalsjf3 23lkjf2k3'
+                            },
+                        ]
+                    }
+                    
+                ],
                 lastStep: 1,
                 paymentData: null,
                 lineSpeed: null,
@@ -43,9 +85,6 @@
         },
         watch: {
             '$route'(to, from) {
-                // if (from.path.indexOf("checkout/") == -1 && to.path !='/checkout/step1') {
-                //     this.$router.push({ path: `/checkout/step${1}`});
-                // }
                 this.step = this.$store.state.thisStep;
                 console.log('store this step', this.step)
             },

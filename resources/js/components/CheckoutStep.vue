@@ -14,7 +14,6 @@
                                      <h4 class="text-uppercase mb-2 text-red-custom">{{ item.frontName}}</h4>
                                      <h5 class="mb-4 text-red-custom">{{ item.subtitle}}</h5>
                                  </div>
-                                 <!--                                 <p class="label-month position-absolute">12 month</p>-->
                              </div>
                              <button
                                  class="btn border-dark mt-4"
@@ -39,25 +38,23 @@ export default {
     },
     data() {
         return {
-            products: [
-                {
-                    frontName: 'Name 1',
-                    subtitle: 'lalalal laldsf lasdf'
-                },
-                {
-                    frontName: 'Name 2',
-                    subtitle: 'tutuguurg uar ruug'
-                }
-            ],
+            products: [],
             lastStep: 1,
-            
         }
     },
     created() {
-        this.$store.commit('lastStepMut', this.lastStep);
-        console.log('lalal',this.$store.state.lastStep);
+        this.getProducts();
+    },
+    watch: {
+        '$route'(to, from) {
+            this.getProducts();
+        },
     },
     methods: {
+        getProducts() {
+            this.$store.commit('lastStepMut', this.lastStep);
+            this.products = this.$store.state.checkoutSteps[this.$store.state.thisStep - 1].elements
+        },
         toSecondStep(name) {
             let stepNum = this.$store.state.checkoutSteps.length;
             let thisStep = this.$store.state.thisStep;
