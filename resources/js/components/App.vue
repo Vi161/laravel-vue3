@@ -1,6 +1,6 @@
 <template>
 	<div class="container border-top">
-		<main-component></main-component>
+<!--		<main-component></main-component>-->
 		<router-view
 		/>
 	</div>
