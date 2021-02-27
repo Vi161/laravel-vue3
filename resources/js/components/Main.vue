@@ -10,76 +10,68 @@
                     {{ index + 1 }}
                 </a>
             </div>
-
         </div>
-        <router-view
-        />
     </div>
 </template>
 
 <script>
-    import CheckoutStep from './CheckoutStep'
-
 
     export default {
-        components: {CheckoutStep},
-        name: 'Checkout',
-        data() {
-            return {
-                step: 1,
-                checkoutSteps: [
-                    {
-                        step: 'step1',
-                        elements: [
-                            {
-                                frontName: 'Name 1',
-                                subtitle: 'iuhiug jK kjhjk '
-                            },
-                            {
-                                frontName: 'Name 2',
-                                subtitle: 'tutuguurg uar ruug'
-                            },
-                        ]
-                    },
-                    {
-                        step: 'step2',
-                        elements: [
-                            {
-                                frontName: 'Name 3',
-                                subtitle: 'lalalal laldsf lasdf'
-                            },
-                            {
-                                frontName: 'Name 4',
-                                subtitle: 'salfkjsl asdflkjlk  lkf'
-                            },
-                            {
-                                frontName: 'Name 5',
-                                subtitle: 'vkjahdkjs o fasd'
-                            },
-                        ]
-                    },
-                    {
-                        step: 'step3',
-                        elements: [
-                            {
-                                frontName: 'Name 6',
-                                subtitle: 'asdf'
-                            },
-                            {
-                                frontName: 'Name 7',
-                                subtitle: ';asfjalsjf3 23lkjf2k3'
-                            },
-                        ]
-                    }
-                    
-                ],
-                lastStep: 1,
-                paymentData: null,
-                lineSpeed: null,
-                speed: null,
-                total: null,
-            }
-         },
+        name: 'Main',
+        data: () => ({
+            step: 1,
+            checkoutSteps: [
+                {
+                    step: 'step1',
+                    elements: [
+                        {
+                            frontName: 'Name 1',
+                            subtitle: 'iuhiug jK kjhjk '
+                        },
+                        {
+                            frontName: 'Name 2',
+                            subtitle: 'tutuguurg uar ruug'
+                        },
+                    ]
+                },
+                {
+                    step: 'step2',
+                    elements: [
+                        {
+                            frontName: 'Name 3',
+                            subtitle: 'lalalal laldsf lasdf'
+                        },
+                        {
+                            frontName: 'Name 4',
+                            subtitle: 'salfkjsl asdflkjlk  lkf'
+                        },
+                        {
+                            frontName: 'Name 5',
+                            subtitle: 'vkjahdkjs o fasd'
+                        },
+                    ]
+                },
+                {
+                    step: 'step3',
+                    elements: [
+                        {
+                            frontName: 'Name 6',
+                            subtitle: 'asdf'
+                        },
+                        {
+                            frontName: 'Name 7',
+                            subtitle: ';asfjalsjf3 23lkjf2k3'
+                        },
+                    ]
+                }
+    
+            ],
+            lastStep: 1,
+            paymentData: null,
+            lineSpeed: null,
+            speed: null,
+            total: null,
+        }),
         mounted() {
             this.$store.commit('checkoutStepsMut', this.checkoutSteps);
         },
@@ -101,7 +93,7 @@
             changeStep(i) {
                 this.step = i;
                 this.$store.commit('thisStepMut', i);
-                this.$router.push({ path: `/checkout/step${i}`});
+                this.$router.push({ path: `/step${i}`});
             }
         },
 

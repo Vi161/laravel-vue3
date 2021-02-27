@@ -42,9 +42,8 @@ export default {
         }
     },
     created() {
-        this.$router.push({ path: `/checkout/step1`});
+        this.$router.push({ path: `/step1`});
         this.getProducts();
-        console.log('st', this.$store.state.thisStep)
     },
     watch: {
         '$route'(to, from) {
@@ -60,7 +59,7 @@ export default {
             let thisStep = this.$store.state.thisStep;
             if (thisStep < stepNum) {
                 this.$store.commit('thisStepMut', thisStep + 1);
-                this.$router.push({ path: `/checkout/step${thisStep + 1}`});
+                this.$router.push({ path: `/step${thisStep + 1}`});
             } else {
                 console.log('This is the Last Step!!!', stepNum, thisStep)
             }

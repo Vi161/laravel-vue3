@@ -1,14 +1,16 @@
 <template>
 	<div class="container border-top">
-		<checkout></checkout>
+		<main-component></main-component>
+		<router-view
+		/>
 	</div>
 </template>
 
 <script>
-  import Checkout from "./Checkout";
+  import MainComponent from "./Main";
   export default {
     name: "App",
-    components: {Checkout},
+    components: {MainComponent},
 	  data: () => ({
     })
   }

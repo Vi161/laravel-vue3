@@ -1,17 +1,17 @@
 import {createRouter, createWebHistory} from 'vue-router';
-import Checkout from "../components/Checkout.vue";
-import CheckoutStep from "../components/CheckoutStep.vue";
+import Main from "../components/Main.vue";
+import Steps from "../components/Steps.vue";
 
 const routes = [
   {
     path: '/',
-    component: Checkout,
-    name: 'checkout'
+    component: Main,
+    name: 'Main'
   },
   {
-    name: 'CheckoutStep',
-    path: '/checkout/step:id',
-    component: CheckoutStep,
+    name: 'Steps',
+    path: '/step:id',
+    component: Steps,
   },
 ];
 
