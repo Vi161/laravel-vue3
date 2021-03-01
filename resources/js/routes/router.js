@@ -1,7 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router';
-import Main from "../components/Main.vue";
-import Steps from "../components/Steps.vue";
-
+const Main = () => import(/* webpackChunkName: 'Main' */ '../components/Main.vue');
+const Steps = () => import(/* webpackChunkName: 'Steps' */ '../components/Steps.vue');
 const routes = [
   {
     path: '/',
